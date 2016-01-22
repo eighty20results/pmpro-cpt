@@ -22,7 +22,7 @@ function pmprocpt_template_redirect()
 	$selected_cpts = pmprocpt_getCPTs();
 	$options = get_option('pmprocpt_options');
 	$redirect_to = intval($options['redirect_to'][0]);
-	if(!pmpro_has_membership_access() && is_singular($selected_cpts) && !empty($redirect_to))
+	if(function_exists('pmpro_has_membership_access') && !pmpro_has_membership_access() && is_singular($selected_cpts) && !empty($redirect_to))
 	{
 		//wp_redirect(pmpro_url('levels');
 		wp_redirect(get_permalink($redirect_to));
